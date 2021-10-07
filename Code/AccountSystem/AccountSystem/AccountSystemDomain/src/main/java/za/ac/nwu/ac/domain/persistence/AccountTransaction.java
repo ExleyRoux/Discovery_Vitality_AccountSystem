@@ -10,12 +10,12 @@ import java.util.Objects;
 public class AccountTransaction implements Serializable {
 
     private Long transactionId;
-    private Long accountTypeId;
-    private Long memberId;
+    private AccountType accountTypeId;
+    private User memberId;
     private Long amount;
     private LocalDate transactionDate;
 
-    public AccountTransaction(Long transactionId, Long accountTypeId, Long memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransaction(Long transactionId, AccountType accountTypeId, User memberId, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
         this.accountTypeId = accountTypeId;
         this.memberId = memberId;
@@ -36,21 +36,25 @@ public class AccountTransaction implements Serializable {
         this.transactionId = transactionId;
     }
 
-    @Column(name = "ID_ACCOUNT_TYPE")
-    public Long getAccountTypeId() {
+    //this is how foreign keys are added, also see in AccountType class
+    //many transactions for each account id
+    //just use fetchtype lazy
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_ACCOUNT_TYPE")
+    public AccountType getAccountTypeId() {
         return accountTypeId;
     }
 
-    public void setAccountTypeId(Long accountTypeId) {
+    public void setAccountTypeId(AccountType accountTypeId) {
         this.accountTypeId = accountTypeId;
     }
 
     @Column(name = "ID_USER")
-    public Long getMemberId() {
+    public User getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(Long memberId) {
+    public void setMemberId(User memberId) {
         this.memberId = memberId;
     }
 
@@ -83,5 +87,16 @@ public class AccountTransaction implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(transactionId, accountTypeId, memberId, amount, transactionDate);
+    }
+
+    @Override
+    public String toString() {
+        return "AccountTransaction{" +
+                "transactionId=" + transactionId +
+                ", accountTypeId=" + accountTypeId +
+                ", memberId=" + memberId +
+                ", amount=" + amount +
+                ", transactionDate=" + transactionDate +
+                '}';
     }
 }
