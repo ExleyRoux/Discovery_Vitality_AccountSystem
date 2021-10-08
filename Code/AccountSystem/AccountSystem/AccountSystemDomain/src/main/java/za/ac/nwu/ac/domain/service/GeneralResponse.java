@@ -7,6 +7,8 @@ public class GeneralResponse<T> {
         this.content = content;
     }
 
+    public GeneralResponse(){ this.content = null; }
+
     public T getContent(){
         return content;
     }

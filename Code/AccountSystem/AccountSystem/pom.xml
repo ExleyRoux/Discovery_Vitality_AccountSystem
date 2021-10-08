@@ -23,6 +23,7 @@
 		<springfox-swagger.version>2.9.2</springfox-swagger.version>
 		<swagger.version>1.5.20</swagger.version>
 		<mysql.version>8.0.26</mysql.version>
+		<spring-web.version>2.5.5</spring-web.version>
 	</properties>
 
 	<modules>
@@ -90,19 +91,20 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring-web.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<dependencies></dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+<!--	<build>-->
+<!--		<plugins>-->
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.boot</groupId>-->
+<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--			</plugin>-->
+<!--		</plugins>-->
+<!--	</build>--> 
 
 </project>
