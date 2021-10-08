@@ -1,7 +1,5 @@
 package za.ac.nwu.ac.repository.config;
 
-
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -12,7 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaRepositories("za.ac.nwu.ac.repository.persistence")
 @EntityScan("za.ac.nwu.ac.domain.persistence")
-@PropertySource(value = "classpath:application-db.properties")
+@PropertySource("classpath:application-db.properties")
 public class RepositoryConfig {
 
 }

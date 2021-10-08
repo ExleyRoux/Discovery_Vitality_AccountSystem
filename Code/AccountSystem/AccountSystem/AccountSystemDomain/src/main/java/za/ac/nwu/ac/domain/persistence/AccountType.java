@@ -1,6 +1,5 @@
 package za.ac.nwu.ac.domain.persistence;
 
-import javax.jws.soap.SOAPBinding;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,7 +24,7 @@ public class AccountType implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public AccountType() {
+    public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
     }
 
     @Id
