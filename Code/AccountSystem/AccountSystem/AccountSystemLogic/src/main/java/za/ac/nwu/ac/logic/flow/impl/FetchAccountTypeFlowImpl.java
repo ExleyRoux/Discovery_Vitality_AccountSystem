@@ -1,6 +1,8 @@
 package za.ac.nwu.ac.logic.flow.impl;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.logic.flow.FetchAccountTypeFlow;
@@ -11,10 +13,11 @@ import java.util.List;
 
 @Transactional
 @Component
+@ComponentScan(value = "za.ac.nwu.ac.translator")
 public class FetchAccountTypeFlowImpl implements FetchAccountTypeFlow {
     private final AccountTypeTranslator accountTypeTranslator;
 
-
+    @Autowired
     public FetchAccountTypeFlowImpl(AccountTypeTranslator accountTypeTranslator) {
         this.accountTypeTranslator = accountTypeTranslator;
     }

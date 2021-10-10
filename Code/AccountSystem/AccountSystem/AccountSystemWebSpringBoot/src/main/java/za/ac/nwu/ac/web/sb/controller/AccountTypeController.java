@@ -5,7 +5,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +18,14 @@ import za.ac.nwu.ac.logic.flow.FetchAccountTypeFlow;
 
 @RestController
 @RequestMapping("account-type")
+@ComponentScan(value = "za.ac.nwu.ac.logic.flow")
 public class AccountTypeController {
 
     private final FetchAccountTypeFlow fetchAccountTypeFlow;
     private final CreateAccountTypeFlow createAccountTypeFlow;
 
-    public AccountTypeController(FetchAccountTypeFlow fetchAccountTypeFlow, @Qualifier("createAccuontTypeFlowName") CreateAccountTypeFlow createAccountTypeFlow) {
+    @Autowired
+    public AccountTypeController(FetchAccountTypeFlow fetchAccountTypeFlow, @Qualifier("createAccountTypeFlowName") CreateAccountTypeFlow createAccountTypeFlow) {
         this.fetchAccountTypeFlow = fetchAccountTypeFlow;
         this.createAccountTypeFlow = createAccountTypeFlow;
     }
@@ -38,6 +42,9 @@ public class AccountTypeController {
         GeneralResponse<String> response = new GeneralResponse<>("No types found.");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> test(){return new ResponseEntity<String>("Test", HttpStatus.OK);}
 
     @PostMapping("")
     @ApiOperation(value = "Creates a new AccountType.", notes = "Creates a new AccountType in the DB.")

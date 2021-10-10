@@ -16,6 +16,8 @@ public class AccountTypeDto implements Serializable {
     private String accountTypeName;
     private LocalDate creationDate;
 
+    public AccountTypeDto(){}
+
     public AccountTypeDto(String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.mnemonic = mnemonic;
         this.accountTypeName = accountTypeName;
@@ -38,7 +40,6 @@ public class AccountTypeDto implements Serializable {
     public String getMnemonic() {
         return mnemonic;
     }
-
     public void setMnemonic(String mnemonic) {
         this.mnemonic = mnemonic;
     }
@@ -54,7 +55,6 @@ public class AccountTypeDto implements Serializable {
     public String getAccountTypeName() {
         return accountTypeName;
     }
-
     public void setAccountTypeName(String accountTypeName) {
         this.accountTypeName = accountTypeName;
     }
@@ -70,23 +70,22 @@ public class AccountTypeDto implements Serializable {
     public LocalDate getCreationDate() {
         return creationDate;
     }
-
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
-    }
-
-    @Override
-    public boolean equals(Object o){
-        if(this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AccountTypeDto that = (AccountTypeDto) o;
-        return Objects.equals(mnemonic,that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
     }
 
     //add jsonignore for when a getter shouldnt be shown in docs
     @JsonIgnore
     public AccountType getAccountType(){
-        return new AccountType(getMnemonic(), getAccountTypeName(), getCreationDate());
+        return new AccountType(this.getMnemonic(), this.getAccountTypeName(), this.getCreationDate());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountTypeDto that = (AccountTypeDto) o;
+        return Objects.equals(mnemonic, that.mnemonic) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate);
     }
 
     @Override

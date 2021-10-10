@@ -9,16 +9,16 @@ import java.util.Objects;
 @Table(name = "account_types", schema = "account_system")
 public class AccountTransaction implements Serializable {
 
-    private Long transactionId;
-    private AccountType accountTypeId;
-    private User memberId;
+    private Integer transactionId;
+    private AccountType accountType;
+    private User user;
     private Long amount;
     private LocalDate transactionDate;
 
-    public AccountTransaction(Long transactionId, AccountType accountTypeId, User memberId, Long amount, LocalDate transactionDate) {
+    public AccountTransaction(Integer transactionId, AccountType accountTypeId, User member, Long amount, LocalDate transactionDate) {
         this.transactionId = transactionId;
-        this.accountTypeId = accountTypeId;
-        this.memberId = memberId;
+        this.accountType = accountTypeId;
+        this.user = member;
         this.amount = amount;
         this.transactionDate = transactionDate;
     }
@@ -27,42 +27,39 @@ public class AccountTransaction implements Serializable {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "ID_TRANSACTION")
-    public Long getTransactionId() {
+    public Integer getTransactionId() {
         return transactionId;
     }
-
-    public void setTransactionId(Long transactionId) {
+    public void setTransactionId(Integer transactionId) {
         this.transactionId = transactionId;
     }
 
     //this is how foreign keys are added, also see in AccountType class
     //many transactions for each account id
-    //just use fetchtype lazy
+    //just use fetch type lazy
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ACCOUNT_TYPE")
-    public AccountType getAccountTypeId() {
-        return accountTypeId;
+    public AccountType getAccountType() {
+        return accountType;
     }
-
-    public void setAccountTypeId(AccountType accountTypeId) {
-        this.accountTypeId = accountTypeId;
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
     @Column(name = "ID_USER")
-    public User getMemberId() {
-        return memberId;
+    public User getUser() {
+        return user;
     }
-
-    public void setMemberId(User memberId) {
-        this.memberId = memberId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Column(name = "AMOUNT")
     public Long getAmount() {
         return amount;
     }
-
     public void setAmount(Long amount) {
         this.amount = amount;
     }
@@ -71,7 +68,6 @@ public class AccountTransaction implements Serializable {
     public LocalDate getTransactionDate() {
         return transactionDate;
     }
-
     public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
     }
@@ -81,20 +77,20 @@ public class AccountTransaction implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountTransaction that = (AccountTransaction) o;
-        return Objects.equals(transactionId, that.transactionId) && Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(memberId, that.memberId) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate);
+        return Objects.equals(transactionId, that.transactionId) && Objects.equals(accountType, that.accountType) && Objects.equals(user, that.user) && Objects.equals(amount, that.amount) && Objects.equals(transactionDate, that.transactionDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(transactionId, accountTypeId, memberId, amount, transactionDate);
+        return Objects.hash(transactionId, accountType, user, amount, transactionDate);
     }
 
     @Override
     public String toString() {
         return "AccountTransaction{" +
                 "transactionId=" + transactionId +
-                ", accountTypeId=" + accountTypeId +
-                ", memberId=" + memberId +
+                ", accountType=" + accountType +
+                ", user=" + user +
                 ", amount=" + amount +
                 ", transactionDate=" + transactionDate +
                 '}';
