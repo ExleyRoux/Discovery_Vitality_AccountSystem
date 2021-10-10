@@ -6,29 +6,28 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", schema = "account_system")
+@Table(name = "users")
 public class User implements Serializable {
 
-    private Long memberId;
+    private Integer memberId;
     private String memberName;
     private String memberSurname;
+    private Set<AccountTransaction> accountTransactions;
 
-    public User(Long memberId, String memberName, String memberSurname) {
+
+    public User(Integer memberId, String memberName, String memberSurname) {
         this.memberId = memberId;
         this.memberName = memberName;
         this.memberSurname = memberSurname;
     }
 
-    public User() {
-    }
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID_USER")
-    public Long getMemberId() {
+    public Integer getMemberId() {
         return memberId;
     }
-
-    public void setMemberId(Long memberId) {
+    public void setMemberId(Integer memberId) {
         this.memberId = memberId;
     }
 
@@ -36,7 +35,6 @@ public class User implements Serializable {
     public String getMemberName() {
         return memberName;
     }
-
     public void setMemberName(String memberName) {
         this.memberName = memberName;
     }
@@ -45,28 +43,28 @@ public class User implements Serializable {
     public String getMemberSurname() {
         return memberSurname;
     }
-
     public void setMemberSurname(String memberSurname) {
         this.memberSurname = memberSurname;
     }
 
-    //set up foreign key in AccountTypes table - one user can have many accounttypes, and each accounttype can have many transactions
-    @OneToMany(targetEntity = AccountType.class, fetch = FetchType.LAZY, mappedBy = "accountTypeId", orphanRemoval = true, cascade = CascadeType.PERSIST)
-    public Set<AccountType> getAccountTypes(){
-        return getAccountTypes();
+    @OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "user", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    @ElementCollection(targetClass = AccountTransaction.class)
+    public Set<AccountTransaction> getAccountTransactions() {
+        return accountTransactions;
     }
+    public void setAccountTransactions(Set<AccountTransaction> accountTransactions) {this.accountTransactions = accountTransactions;}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(memberId, user.memberId) && Objects.equals(memberName, user.memberName) && Objects.equals(memberSurname, user.memberSurname);
+        return Objects.equals(memberId, user.memberId) && Objects.equals(memberName, user.memberName) && Objects.equals(memberSurname, user.memberSurname)  && Objects.equals(accountTransactions, user.accountTransactions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(memberId, memberName, memberSurname);
+        return Objects.hash(memberId, memberName, memberSurname, accountTransactions);
     }
 
     @Override
@@ -75,6 +73,7 @@ public class User implements Serializable {
                 "memberId=" + memberId +
                 ", memberName='" + memberName + '\'' +
                 ", memberSurname='" + memberSurname + '\'' +
+                ", accountTransactions=" + accountTransactions +
                 '}';
     }
 }

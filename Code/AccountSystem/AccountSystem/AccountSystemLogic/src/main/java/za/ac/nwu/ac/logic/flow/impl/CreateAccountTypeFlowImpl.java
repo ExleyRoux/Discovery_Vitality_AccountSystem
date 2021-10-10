@@ -1,5 +1,6 @@
 package za.ac.nwu.ac.logic.flow.impl;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.logic.flow.CreateAccountTypeFlow;

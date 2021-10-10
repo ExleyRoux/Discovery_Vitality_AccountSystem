@@ -1,15 +1,21 @@
 package za.ac.nwu.ac.domain.service;
 
-public class GeneralResponse<T> {
-    private final T content;
+import java.io.Serializable;
 
-    public GeneralResponse(T content) {
+public class GeneralResponse<T> implements Serializable {
+    private final transient T content;
+    private final boolean successful;
+
+    public GeneralResponse(T content){
+        this.successful = false;
         this.content = content;
     }
 
-    public GeneralResponse(){ this.content = null; }
-
-    public T getContent(){
-        return content;
+    public GeneralResponse(boolean successful, T content) {
+        this.successful = successful;
+        this.content = content;
     }
+
+    public boolean isSuccessful(){return successful;}
+    public T getContent(){return content;}
 }

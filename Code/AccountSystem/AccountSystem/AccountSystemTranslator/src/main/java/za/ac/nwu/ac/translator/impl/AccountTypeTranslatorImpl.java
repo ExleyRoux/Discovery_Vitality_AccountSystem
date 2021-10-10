@@ -1,6 +1,9 @@
 package za.ac.nwu.ac.translator.impl;
 
 import antlr.ASTNULLType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import za.ac.nwu.ac.domain.dto.AccountTypeDto;
 import za.ac.nwu.ac.domain.persistence.AccountType;
 import za.ac.nwu.ac.repository.persistence.AccountTypeRepository;
@@ -10,20 +13,25 @@ import javax.swing.tree.ExpandVetoException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
+    @Autowired
     private AccountTypeRepository accountTypeRepository;
+
+    public AccountTypeTranslatorImpl(){}
+    public AccountTypeTranslatorImpl(AccountTypeRepository accountTypeRepository){
+        this.accountTypeRepository = accountTypeRepository;
+    }
 
     public AccountTypeRepository getAccountTypeRepository() {
         return accountTypeRepository;
     }
-
     public void setAccountTypeRepository(AccountTypeRepository accountTypeRepository) {
         this.accountTypeRepository = accountTypeRepository;
     }
 
     @Override
     public List<AccountTypeDto> getAllAccountTypes() {
-
         List<AccountTypeDto> accountTypeDtos = new ArrayList<>();
         try {
             for(AccountType accountType : accountTypeRepository.findAll()){

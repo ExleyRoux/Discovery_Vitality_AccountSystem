@@ -7,6 +7,6 @@ import za.ac.nwu.ac.domain.persistence.AccountType;
 
 //set up the repository extends jpa - very nice features, set up with table class and pk id type
 @Repository
-public interface AccountTypeRepository extends JpaRepository<AccountType, Long> {
+public interface AccountTypeRepository extends JpaRepository<AccountType, Integer> {
 
 }
