@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import za.ac.nwu.ac.domain.dto.AccountBalanceDTO;
 import za.ac.nwu.ac.domain.dto.AccountTypeDTO;
 import za.ac.nwu.ac.domain.dto.MemberDTO;
 import za.ac.nwu.ac.domain.persistence.Member;
@@ -34,6 +35,22 @@ public class MemberController {
         this.fetchMemberFlow = fetchmemberFlow;
         this.createMemberFlow = createMemberFlow;
     }
+
+//    @GetMapping("/balance")
+//    @ApiOperation(value = "Gets the account balance of a member.", notes = "Returns a list of accounts' balances")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Balances returned", response = GeneralResponse.class),
+//            @ApiResponse(code = 400, message = "Bad request", response = GeneralResponse.class),
+//            @ApiResponse(code = 404, message = "Not found", response = GeneralResponse.class),
+//            @ApiResponse(code = 500, message = "Internal server error", response = GeneralResponse.class)
+//    })
+//    public ResponseEntity<GeneralResponse<List<AccountBalanceDTO>>> get(@ApiParam(
+//            value = "Request body for user account",
+//            required = true) @RequestParam Integer memberId){
+//        List<AccountBalanceDTO> accountBalanceDTOS = fetchMemberFlow.getBalance(memberId);
+//        GeneralResponse<List<AccountBalanceDTO>> response = new GeneralResponse<>(true, accountBalanceDTOS);
+//        return new ResponseEntity<GeneralResponse<List<AccountBalanceDTO>>>(response, HttpStatus.OK);
+//    }
 
 
 

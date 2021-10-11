@@ -7,5 +7,5 @@ import java.util.List;
 public interface MemberTranslator {
     MemberDTO create(MemberDTO member);
     List<MemberDTO> getAllMembers();
-    List<AccountBalanceDTO> getBalance(Integer memberId);
+//    List<AccountBalanceDTO> getBalance(Integer memberId);
 }

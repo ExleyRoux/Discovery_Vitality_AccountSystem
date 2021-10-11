@@ -50,7 +50,7 @@ public class AccountTypeDTO implements Serializable {
             dataType = "java.lang.String",
             example = "Miles",
             allowEmptyValue = false,
-            required = true
+            required = false
     )
     public String getAccountTypeName() {
         return accountTypeName;
