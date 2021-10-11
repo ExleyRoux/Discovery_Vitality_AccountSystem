@@ -14,7 +14,7 @@ public class AccountTransaction implements Serializable {
     private Long amount;
     private LocalDate transactionDate;
 
-    public AccountTransaction() {
+    public AccountTransaction(Integer memberId, Integer transactionAccountTypeId, LocalDate transactionDate, Long transactionAmount) {
     }
 
     public AccountTransaction(Integer accountTypeID, AccountType accountType, Member member, Long amount, LocalDate transactionDate) {
@@ -23,6 +23,13 @@ public class AccountTransaction implements Serializable {
         this.member = member;
         this.amount = amount;
         this.transactionDate = transactionDate;
+    }
+
+    public AccountTransaction(Integer memberId, String mnemonic, LocalDate transactionDate, Long amount) {
+        this.member.setMemberId(memberId);
+        this.accountType.setMnemonic(mnemonic);
+        this.transactionDate = transactionDate;
+        this.amount = amount;
     }
 
     @Id

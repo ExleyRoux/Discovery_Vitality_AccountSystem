@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "member")
+@Table(name = "members")
 public class Member implements Serializable {
     private Integer memberId;
     private String firstName;
@@ -23,9 +23,15 @@ public class Member implements Serializable {
         this.accountTransactions = accountTransactions;
     }
 
+    public Member(Integer id, String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.memberId = id;
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "ID_MEMBERS")
     public Integer getMemberId() {
         return memberId;
     }

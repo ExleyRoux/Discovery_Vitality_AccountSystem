@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.nwu.ac.domain.dto.AccountTypeDTO;
+import za.ac.nwu.ac.domain.persistence.AccountType;
 import za.ac.nwu.ac.domain.service.GeneralResponse;
 import za.ac.nwu.ac.logic.flow.CreateAccountTypeFlow;
 import za.ac.nwu.ac.logic.flow.FetchAccountTypeFlow;
@@ -46,11 +47,6 @@ public class AccountTypeController {
         return new ResponseEntity<GeneralResponse<List<AccountTypeDTO>>>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test(){
-        return new ResponseEntity<String>("Test", HttpStatus.OK);
-    }
-
     @PostMapping("")
     @ApiOperation(value = "Create a new account type", notes = "Creates a new account type in the database")
     @ApiResponses(value = {
@@ -67,4 +63,23 @@ public class AccountTypeController {
         GeneralResponse<AccountTypeDTO> response = new GeneralResponse<AccountTypeDTO>(true, accountTypeResponse);
         return new ResponseEntity<>(response,HttpStatus.CREATED);
     }
+
+//    @GetMapping("{mnemonic}")
+//    @ApiOperation(value = "Fetches the specified AccountType.", notes = "Fetches the AccountType corresponding to the given mnemonic.")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Goal Found", response = GeneralResponse.class),
+//            @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
+//            @ApiResponse(code = 404, message = "Resource not found", response = GeneralResponse.class),
+//            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),
+//    })
+//    public ResponseEntity<GeneralResponse<AccountTypeDTO>> getAccountType(
+//            @ApiParam(value = "The mnemonic that uniquely identifies the AccountType",
+//            example = "MILES",
+//            name = "mnemonic",
+//            required = true)
+//            @PathVariable("mnemonic") final String mnemonic){
+//        AccountTypeDTO accountType = fetchAccountTypeFlow.getAccountTypeByMnemonic(mnemonic);
+//        GeneralResponse<AccountTypeDTO> response = new GeneralResponse<>(true, accountType);
+//        return new ResponseEntity<>(response,HttpStatus.OK);
+//    }
 }

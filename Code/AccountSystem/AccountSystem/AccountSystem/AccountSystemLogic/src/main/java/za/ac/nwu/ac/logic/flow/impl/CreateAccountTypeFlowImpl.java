@@ -2,6 +2,7 @@ package za.ac.nwu.ac.logic.flow.impl;
 
 import org.springframework.stereotype.Component;
 import za.ac.nwu.ac.domain.dto.AccountTypeDTO;
+import za.ac.nwu.ac.domain.dto.MemberDTO;
 import za.ac.nwu.ac.logic.flow.CreateAccountTypeFlow;
 import za.ac.nwu.ac.translator.AccountTypeTranslator;
 

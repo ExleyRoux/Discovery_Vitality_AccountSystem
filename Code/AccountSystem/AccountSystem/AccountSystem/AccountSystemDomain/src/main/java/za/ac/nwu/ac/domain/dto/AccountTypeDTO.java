@@ -78,6 +78,4 @@ public class AccountTypeDTO implements Serializable {
     {
         return new AccountType(this.getMnemonic(), this.getAccountTypeName(), this.getCreationDate());
     }
-
-
 }

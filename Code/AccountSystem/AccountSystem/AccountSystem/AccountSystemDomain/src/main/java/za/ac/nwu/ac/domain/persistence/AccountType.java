@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "account_type")
+@Table(name = "account_types")
 public class AccountType  implements Serializable {
     private Integer id;
     private String mnemonic;
@@ -33,7 +33,7 @@ public class AccountType  implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "ID_ACCOUNT_TYPES")
     public Integer getId() {
         return id;
     }

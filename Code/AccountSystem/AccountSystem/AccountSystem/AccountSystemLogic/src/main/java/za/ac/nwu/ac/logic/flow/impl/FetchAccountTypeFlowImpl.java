@@ -12,11 +12,11 @@ import java.util.List;
 
 @Transactional
 @Component
-@ComponentScan(value = "za.ac.nwu.ac.translator")
+//@ComponentScan(value = "za.ac.nwu.ac.translator")
 public class FetchAccountTypeFlowImpl implements FetchAccountTypeFlow {
-    @Autowired
     private final AccountTypeTranslator accountTypeTranslator;
 
+    @Autowired
     public FetchAccountTypeFlowImpl(AccountTypeTranslator accountTypeTranslator) {
         this.accountTypeTranslator = accountTypeTranslator;
     }
@@ -24,4 +24,9 @@ public class FetchAccountTypeFlowImpl implements FetchAccountTypeFlow {
     public List<AccountTypeDTO> getAllAccountTypes(){
         return accountTypeTranslator.getAllAccountTypes();
     }
+
+//    @Override
+//    public AccountTypeDTO getAccountTypeByMnemonic(String mnemonic) {
+//        return accountTypeTranslator.getAccountTypeByMnemonic(mnemonic);
+//    }
 }
