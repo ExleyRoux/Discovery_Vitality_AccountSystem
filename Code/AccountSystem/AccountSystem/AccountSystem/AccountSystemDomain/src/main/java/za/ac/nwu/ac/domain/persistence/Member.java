@@ -13,8 +13,7 @@ public class Member implements Serializable {
     private String lastName;
     private Set<AccountTransaction>  accountTransactions;
 
-    public Member() {
-    }
+    public Member(){}
 
     public Member(Integer memberId, String firstName, String lastName, Set<AccountTransaction> accountTransactions) {
         this.memberId = memberId;

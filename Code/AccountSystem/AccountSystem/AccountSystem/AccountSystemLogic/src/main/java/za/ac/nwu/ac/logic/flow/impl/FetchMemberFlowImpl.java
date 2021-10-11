@@ -2,6 +2,7 @@ package za.ac.nwu.ac.logic.flow.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import za.ac.nwu.ac.domain.dto.AccountBalanceDTO;
 import za.ac.nwu.ac.domain.dto.AccountTypeDTO;
 import za.ac.nwu.ac.domain.dto.MemberDTO;
 import za.ac.nwu.ac.logic.flow.FetchMemberFlow;
@@ -25,6 +26,4 @@ public class FetchMemberFlowImpl implements FetchMemberFlow {
     public List<MemberDTO> getAllMembers(){
         return memberTranslator.getAllMembers();
     }
-
-
 }

@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import za.ac.nwu.ac.domain.dto.AccountTransactionDTO;
 import za.ac.nwu.ac.domain.dto.AccountTypeDTO;
 import za.ac.nwu.ac.domain.service.GeneralResponse;
+import za.ac.nwu.ac.logic.flow.CreateAccountTypeFlow;
 import za.ac.nwu.ac.logic.flow.CreateTransactionFlow;
+import za.ac.nwu.ac.logic.flow.FetchAccountTypeFlow;
 import za.ac.nwu.ac.logic.flow.FetchTransactionFlow;
 
 import java.util.List;
@@ -27,7 +30,7 @@ public class AccountTransactionController {
     private CreateTransactionFlow createTransactionFlow;
 
     @Autowired
-    public AccountTransactionController(FetchTransactionFlow fetchTransactionFlow, CreateTransactionFlow createTransactionFlow) {
+    public AccountTransactionController(FetchTransactionFlow fetchTransactionFlow, @Qualifier("createTransactionFlowName") CreateTransactionFlow createTransactionFlow) {
         this.fetchTransactionFlow = fetchTransactionFlow;
         this.createTransactionFlow = createTransactionFlow;
     }
@@ -62,4 +65,6 @@ public class AccountTransactionController {
         GeneralResponse<AccountTransactionDTO> response = new GeneralResponse<AccountTransactionDTO>(true, accountTransactionResponse);
         return new ResponseEntity<>(response,HttpStatus.CREATED);
     }
+
+
 }

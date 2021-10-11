@@ -60,14 +60,7 @@ public class MemberDTO implements Serializable {
         this.lastName = lastName;
     }
 
-    @ApiModelProperty(
-            position = 3,
-            value = "Member Id",
-            name = "Id",
-            dataType = "java.lang.Integer",
-            example = "2",
-            required = true
-    )
+    @JsonIgnore
     public Integer getId() {
         return memberId;
     }

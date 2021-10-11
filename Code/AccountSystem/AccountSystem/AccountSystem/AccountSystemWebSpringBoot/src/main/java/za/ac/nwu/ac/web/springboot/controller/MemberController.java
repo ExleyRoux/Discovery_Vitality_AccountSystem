@@ -31,7 +31,7 @@ public class MemberController {
 
     @Autowired
     public MemberController(FetchMemberFlow fetchmemberFlow, @Qualifier("createMemberFlowName") CreateMemberFlow createMemberFlow){
-        this.fetchMemberFlow = fetchMemberFlow;
+        this.fetchMemberFlow = fetchmemberFlow;
         this.createMemberFlow = createMemberFlow;
     }
 
@@ -46,13 +46,9 @@ public class MemberController {
             @ApiResponse(code = 500, message = "Internal server error", response = GeneralResponse.class)
     })
     public ResponseEntity<GeneralResponse<List<MemberDTO>>> getAll(){
-        try {
-            List<MemberDTO> member = fetchMemberFlow.getAllMembers();
-            GeneralResponse<List<MemberDTO>> response = new GeneralResponse<>(true, member);
-            return new ResponseEntity<GeneralResponse<List<MemberDTO>>>(response, HttpStatus.OK);
-        } catch (Exception e){
-            throw new RuntimeException("Something went wrong:" + e);
-        }
+        List<MemberDTO> member = fetchMemberFlow.getAllMembers();
+        GeneralResponse<List<MemberDTO>> response = new GeneralResponse<>(true, member);
+        return new ResponseEntity<GeneralResponse<List<MemberDTO>>>(response, HttpStatus.OK);
     }
 
 

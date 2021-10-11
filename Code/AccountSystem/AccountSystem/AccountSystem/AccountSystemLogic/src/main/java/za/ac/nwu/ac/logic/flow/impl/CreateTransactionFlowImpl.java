@@ -10,7 +10,7 @@ import za.ac.nwu.ac.translator.AccountTransactionTranslator;
 import javax.transaction.Transactional;
 
 @Transactional
-@Component
+@Component("createTransactionFlowName")
 public class CreateTransactionFlowImpl implements CreateTransactionFlow {
     private final AccountTransactionTranslator accountTransactionTranslator;
 
